@@ -1,7 +1,7 @@
 import pygame
 pygame.init()
 
-screen = pygame.display.set_mode([800, 600])
+screen = pygame.display.set_mode([800, 800])
 
 
 snake = pygame.image.load("square.png")
@@ -34,16 +34,16 @@ while running:
                 snake_Y_change += 50
 
     if snake_X_change <= 0:
-        snake_X_change = 0
-
-    elif snake_X_change >= 800:
         snake_X_change = 750
 
-    if snake_Y_change <= 0:
-        snake_Y_change = 0
+    elif snake_X_change >= 800:
+        snake_X_change = 0.1
 
-    elif snake_Y_change >= 600:
-        snake_Y_change = 550
+    if snake_Y_change <= 0:
+        snake_Y_change = 750
+
+    elif snake_Y_change >= 800:
+        snake_Y_change = 0.1
 
     left_right(snake_X_change, snake_Y_change)
     pygame.display.update()
