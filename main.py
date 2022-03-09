@@ -2,7 +2,7 @@ import pygame
 pygame.init()
 
 screen = pygame.display.set_mode([800, 600])
-screen.fill((0, 255, 0))
+
 
 snake = pygame.image.load("square.png")
 snake = pygame.transform.scale(snake, (50, 50))
@@ -14,6 +14,9 @@ def left_right(x, y):
 
 running = True
 while running:
+    screen.fill((0, 255, 0))
+
+    # background image
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
@@ -30,9 +33,18 @@ while running:
             if event.key == pygame.K_DOWN:
                 snake_Y_change += 50
 
+    if snake_X_change <= 0:
+        snake_X_change = 0
+
+    elif snake_X_change >= 800:
+        snake_X_change = 750
+
+    if snake_Y_change <= 0:
+        snake_Y_change = 0
+
+    elif snake_Y_change >= 600:
+        snake_Y_change = 550
+
     left_right(snake_X_change, snake_Y_change)
     pygame.display.update()
 
-
-
-pygame.quit()
