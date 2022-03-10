@@ -20,7 +20,17 @@ circle_Y = random.randint(0, 800)
 
 def left_right(x, y):
     screen.blit(snake, (x, y))
+    control()
     screen.blit(circle, (circle_X, circle_Y))
+
+def control():
+    global circle_X, circle_Y
+    distance = ((circle_X - snake_X)**2 + (circle_Y - snake_Y )**2) ** 0.5 
+    
+    if distance >= 0 and distance <= 50:
+        
+        circle_X = random.randint(0, 800)
+        circle_Y = random.randint(0, 800)
 
 running = True
 while running:
@@ -65,5 +75,6 @@ while running:
         snake_Y = 0.1
 
     left_right(snake_X, snake_Y)
+    
     pygame.display.update()
 
