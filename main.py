@@ -1,4 +1,5 @@
 import pygame
+import random
 pygame.init()
 
 screen = pygame.display.set_mode([800, 800])
@@ -11,8 +12,15 @@ snake_Y = 0
 snake_X_change = 0
 snake_Y_change = 0
 
+circle = pygame.image.load("circle.png")
+circle = pygame.transform.scale(circle, (20, 20))
+circle_X = random.randint(0, 800)
+circle_Y = random.randint(0, 800)
+
+
 def left_right(x, y):
     screen.blit(snake, (x, y))
+    screen.blit(circle, (circle_X, circle_Y))
 
 running = True
 while running:
