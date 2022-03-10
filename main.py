@@ -24,16 +24,16 @@ while running:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                snake_X_change = -0.5
+                snake_X_change = -0.3
 
-            elif event.key == pygame.K_RIGHT:
-                snake_X_change = 0.5
+            if event.key == pygame.K_RIGHT:
+                snake_X_change = 0.3
 
-            elif event.key == pygame.K_UP:
-                snake_Y_change = -0.5
+            if event.key == pygame.K_UP:
+                snake_Y_change = -0.3
 
-            elif event.key == pygame.K_DOWN:
-                snake_Y_change = 0.5
+            if event.key == pygame.K_DOWN:
+                snake_Y_change = 0.3
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
