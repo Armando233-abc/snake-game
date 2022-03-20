@@ -1,38 +1,50 @@
 import game
 import pygame
 
-snake_x_change = 0
-snake_y_change = 0
-
 gioco = game.Game(800, 800)
-
+change = 0
+movement = ''
 running = True
 
 while running:
     
     gioco.screen_fill()
-
+    
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                snake_x_change = -0.3
+                change = -0.3
+                movement = 'snake_x'
+                
+                
+            elif event.key == pygame.K_RIGHT:
+                change = 0.3
+                movement = 'snake_x'
+                
+                
+            elif event.key == pygame.K_UP:
+                change = -0.3
+                movement = 'snake_y'
+                
 
-            if event.key == pygame.K_RIGHT:
-                snake_x_change = 0.3
-
-            if event.key == pygame.K_UP:
-                snake_y_change = -0.3
-
-            if event.key == pygame.K_DOWN:
-                snake_y_change = 0.3
+            elif event.key == pygame.K_DOWN:
+                change = 0.3
+                movement = 'snake_y'
+                
 
         if event.type == pygame.KEYUP:
             if event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT:
-                snake_x_change = 0
+                change = 0
+                
+                
             if event.key == pygame.K_UP or event.key == pygame.K_DOWN:
-                snake_y_change = 0
+                change = 0
+                
 
-    gioco.move_snake(snake_x_change, snake_y_change)
+    
+    
+    gioco.move_snake([movement, change])
+
     gioco.update_screen()
