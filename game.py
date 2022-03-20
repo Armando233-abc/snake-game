@@ -9,6 +9,7 @@ class Game:
     __circle_y = None
 
     __snakes = []
+    __changes = None
 
     def __init__(self, x, y):
         pygame.init()
@@ -23,6 +24,7 @@ class Game:
         self.__circle_y = random.randint(50, 750)
 
     def __create_snake(self):
+        
         if(len(self.__snakes) == 0):
             self.__snakes.append({
                 "snake": pygame.image.load("square.png"),
@@ -31,7 +33,29 @@ class Game:
             })
 
             self.__snakes[0]["snake"] = pygame.transform.scale(self.__snakes[0]["snake"], (30, 30))
-       
+        else:
+            cordinate = self.__i_dont_know_how_call_it()
+            self.__snakes.append({
+                "snake": pygame.image.load("square.png"),
+                "snake_x": self.__snakes[len(self.__snakes) - 1]["snake_x"] + cordinate[0],
+                "snake_y": self.__snakes[len(self.__snakes) - 1]["snake_y"] + cordinate[1]
+            })
+
+            self.__snakes[len(self.__snakes) - 1]["snake"] = pygame.transform.scale(self.__snakes[0]["snake"], (30, 30))
+        
+    
+    def __i_dont_know_how_call_it(self):
+        snake_x = 0
+        snake_y = 0
+        if(self.__changes[0] == 'snake_x' and self.__changes[1] < 0):
+            snake_x = 30
+        elif(self.__changes[0] == 'snake_x' and self.__changes[1] > 0):
+            snake_x = -30
+        elif(self.__changes[0] == 'snake_y' and self.__changes[1] < 0):
+            snake_y = 30
+        elif(self.__changes[0] == 'snake_y' and self.__changes[1] > 0):
+            snake_y = -30
+        return [snake_x, snake_y]
 
     def __controll_snake_position(self, snake):
         if snake['snake_x'] < 0:
@@ -62,14 +86,13 @@ class Game:
         if(changes[0] == ''):
             return 0
         for snake in self.__snakes:
+            self.__changes = changes
             self.__screen.blit(
                 snake['snake'], (snake['snake_x'], snake['snake_y']))
             
-            
-            
+
             snake[changes[0]] += changes[1]
             
-
             self.__controll_snake_position(snake)
             self.__control_eat()
             self.__screen.blit(
