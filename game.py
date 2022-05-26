@@ -34,7 +34,7 @@ class Game:
 
             self.__snakes[0]["snake"] = pygame.transform.scale(self.__snakes[0]["snake"], (30, 30))
         else:
-            cordinate = self.__i_dont_know_how_call_it()
+            cordinate = self.get_cordinate_change()
             self.__snakes.append({
                 "snake": pygame.image.load("square.png"),
                 "snake_x": self.__snakes[len(self.__snakes) - 1]["snake_x"] + cordinate[0],
@@ -44,7 +44,7 @@ class Game:
             self.__snakes[len(self.__snakes) - 1]["snake"] = pygame.transform.scale(self.__snakes[0]["snake"], (30, 30))
         
     
-    def __i_dont_know_how_call_it(self):
+    def get_cordinate_change(self):
         snake_x = 0
         snake_y = 0
         if(self.__changes[0] == 'snake_x' and self.__changes[1] < 0):
